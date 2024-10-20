@@ -6,6 +6,7 @@ import path from 'path';
 import __dirName from './utils.js';
 import viewsRouter from './routes/views.router.js'
 import productModel from './models/product.model.js';
+import productsRouter from './routes/products.router.js';
 
 // environment variables config
 dotenv.config();
@@ -18,15 +19,16 @@ mongoose.connect(URLConnection);
 const port = 8080
 const app = express();
 const httpServer = app.listen(port, () => {
-    console.log('Server on port ', port);
+    console.log('Server on port', port);
 });
 
 // path routers config
 app.use('/', viewsRouter);
+app.use('/products', productsRouter)
 
 // handlebars engine config
 app.engine('handlebars', handlebars.engine());
-app.set('views', __dirName + '/views');
+app.set('views', path.join(__dirName + '/views'));
 app.set('view engine', 'handlebars');
 
 // set public folder as static files directory

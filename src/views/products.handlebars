@@ -1,0 +1,16 @@
+<p>hola</p>
+{{!-- <p>{{ object.title }}</p> --}}
+<section class="products">
+    <div class="cardsContainer">
+        {{#each docs}}
+            <div class="productCard col">
+                <h3>{{this.title}}</h3>
+                <img src={{this.image}} alt={{this.title}}>
+                <p class="platform">{{this.platform}}</p>
+                <p class="price">${{this.price}}</p>
+                <p class="overview">{{this.brief_overview}}</p>
+                <button>Añadir al carrito</button>
+            </div>    
+        {{/each}}
+    </div>
+</section>
