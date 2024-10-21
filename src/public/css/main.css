@@ -18,6 +18,10 @@
      align-items: center;
 }
 
+.products h1 {
+    margin: 10px;
+}
+
 .products .cardsContainer {
     width: 70vw;
     display: flex;

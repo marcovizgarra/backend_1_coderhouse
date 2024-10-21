@@ -10,7 +10,7 @@ const productSchema = mongoose.Schema({
     full_description: String,
     image: { type: String, require: false },
     price: { type: Number, require: true }
-})
+});
 
 productSchema.plugin(mongoosePaginate);
 const productModel = mongoose.model(productCollection, productSchema);
