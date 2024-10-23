@@ -8,7 +8,12 @@
                 <p class="platform">{{this.platform}}</p>
                 <p class="price">${{this.price}}</p>
                 <p class="overview">{{this.brief_overview}}</p>
-                <button class="addCartBtn" productId="{{this._id}}">Añadir al carrito</button>
+                <form class="row"  action="/products/add" method="POST">
+                    <input type="hidden" name="cartId" value="671898b6ffad40be7c8c92ea">
+                    <input type="hidden" name="itemId" value={{this.id}}>
+                    <input class="col quantity" type="number" placeholder="Cantidad" name="quantity" value="1">
+                    <button class="col" type="submit">Añadir al carrito</button>
+                </form>
             </div>    
         {{/each}}
     </div>

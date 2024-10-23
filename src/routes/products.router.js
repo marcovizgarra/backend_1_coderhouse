@@ -1,5 +1,6 @@
 import { Router } from "express";
 import productModel from "../models/product.model.js";
+import cartModel from "../models/cart.model.js";
 
 const productsRouter = Router();
 
@@ -8,7 +9,7 @@ productsRouter.get('/', async (request, response) => {
     let row = parseInt(request.query.row);
 
     if (!row || row < 1) {
-    row = 1
+    row = 4
     };
 
 
@@ -16,5 +17,42 @@ productsRouter.get('/', async (request, response) => {
 
     response.render('products', query)
 });
+
+productsRouter.post('/add', async (req, res) => {
+    // let cartId = req.query.cartId;
+    // let itemId = req.query.itemId;
+    // let quantity = parseInt(req.query.quantity);
+    const { cartId, itemId, quantity = parseInt(quantity) } = req.body;        
+
+    try {
+      const cart = await cartModel.findOne({ _id: cartId, 'items.item' : itemId });
+  
+      if (cart) {
+        const updatedCart = await cartModel.updateOne(
+          { _id: cartId, 'items.item': itemId},
+          {
+            $inc: { 'items.$.quant': quantity}
+          }
+        );
+  
+        console.log('Cart updated');
+        res.send("Producto añadido satisfactoriamente");
+        return updatedCart;
+      } else {
+        const updatedCart = await cartModel.findByIdAndUpdate(
+          cartId, {
+            $push: { items: {item: itemId, quant: quantity } }
+          },
+          { new: true }
+        );
+  
+        console.log('Item created');
+        res.send("Producto añadido satisfactoriamente");
+        return updatedCart;
+      }
+    } catch (error) {
+      console.error('Error: ', error);
+    }
+  })
 
 export default productsRouter

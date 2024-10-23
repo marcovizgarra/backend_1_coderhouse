@@ -37,7 +37,7 @@
      align-items: center;
     text-align: center;
     width: 10rem;
-    height: 32rem;
+    height: 38rem;
     margin: 2px;
     padding: 10px;
     border-radius: 20px;
@@ -72,13 +72,19 @@
     font-weight: bold;
 }
 
-.products .cardsContainer .productCard button {
+.products .cardsContainer .productCard form button {
     background-color: rgb(68, 76, 199);
     color: white;
     font-weight: bold;
     padding: 5px;
     border: 0;
     border-radius: 20px;
+}
+
+.products .cardsContainer .productCard form .quantity {
+    border-radius: 20px;
+    margin-right: 10px;
+    width: 70px;
 }
 
 /* 'cart' view */

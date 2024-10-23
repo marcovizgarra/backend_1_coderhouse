@@ -22,6 +22,9 @@ const httpServer = app.listen(port, () => {
     console.log('Server on port', port);
 });
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // path routers config
 app.use('/', viewsRouter);
 
