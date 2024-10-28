@@ -23,6 +23,15 @@
     margin: 10px;
 }
 
+.products form button {
+    background-color: #ffffff00;
+    border: 0;
+}
+
+.products form button .cartIcon {
+    width: 50px;
+}
+
 .products .cardsContainer {
     width: 70vw;
     display: flex;

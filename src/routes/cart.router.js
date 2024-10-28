@@ -7,7 +7,7 @@ cartRouter.get('/', async (req, res) => {
     try {
         // Get cart with populate
         const cart = await cartModel.findOne({ _id: '671898b6ffad40be7c8c92ea' })
-          .populate('items.item'); // Aquí se hace el "populate" de los productos
+          .populate('items.item');
     
         // Rendering views with items (populate)
         res.render('cart', {

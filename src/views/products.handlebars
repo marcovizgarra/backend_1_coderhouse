@@ -1,5 +1,13 @@
 <section class="products">
     <h1>Bienvenido a GAME STORE</h1>
+
+    <form action="/cart" method="GET">
+        <button type="submit">
+        <img src="/img/cart-shopping-solid.svg" alt="cartIcon" class="cartIcon m-3">
+    </button>
+
+    </form>
+    
     <div class="cardsContainer">
         {{#each docs}}
             <div class="productCard col">
@@ -16,5 +24,16 @@
                 </form>
             </div>    
         {{/each}}
+    </div>
+    <div class="paginationLinks d-flex justify-content-center">
+        {{#if hasPrevPage}}
+            <a href={{this.prevLink}} class="m-3">Anterior</a>
+        {{/if}}
+        
+        <p class="m-3">{{this.page}}</p>
+
+        {{#if hasNextPage}}
+            <a href={{this.nextLink}}  class="m-3">Siguiente</a>
+        {{/if}}
     </div>
 </section>

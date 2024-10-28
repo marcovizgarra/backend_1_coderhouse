@@ -12,16 +12,14 @@ productsRouter.get('/', async (request, response) => {
     row = 4
     };
 
-
     let query = await productModel.paginate({}, {page, limit: row, lean: true});
+    query.prevLink = query.hasPrevPage ? `http://localhost:8080/products?row=${row}&page=${query.prevPage}` : '';
+    query.nextLink = query.hasNextPage ? `http://localhost:8080/products?row=${row}&page=${query.nextPage}` : '';
 
     response.render('products', query)
 });
 
 productsRouter.post('/add', async (req, res) => {
-    // let cartId = req.query.cartId;
-    // let itemId = req.query.itemId;
-    // let quantity = parseInt(req.query.quantity);
     const { cartId, itemId, quantity = parseInt(quantity) } = req.body;        
 
     try {
